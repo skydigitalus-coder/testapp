@@ -1,0 +1,112 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mystical Glow Background -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="40%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0" />
+    </radialGradient>
+
+    <linearGradient id="boxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6d28d9" />
+      <stop offset="100%" style="stop-color:#4c1d95" />
+    </linearGradient>
+
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24" />
+      <stop offset="50%" style="stop-color:#f59e0b" />
+      <stop offset="100%" style="stop-color:#d97706" />
+    </linearGradient>
+
+    <linearGradient id="lightRay" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Mystical Glow Circle -->
+  <circle cx="100" cy="100" r="90" fill="url(#glow)" />
+
+  <!-- Light Rays emanating from box -->
+  <g opacity="0.6">
+    <path d="M100 80 L85 20 L95 20 L100 80 Z" fill="url(#lightRay)" />
+    <path d="M100 80 L70 30 L78 25 L100 80 Z" fill="url(#lightRay)" />
+    <path d="M100 80 L130 30 L122 25 L100 80 Z" fill="url(#lightRay)" />
+    <path d="M100 80 L115 20 L105 20 L100 80 Z" fill="url(#lightRay)" />
+    <path d="M100 80 L145 40 L138 34 L100 80 Z" fill="url(#lightRay)" />
+    <path d="M100 80 L55 40 L62 34 L100 80 Z" fill="url(#lightRay)" />
+  </g>
+
+  <!-- Box Lid (Top) -->
+  <g>
+    <!-- Lid Shadow -->
+    <ellipse cx="100" cy="85" rx="38" ry="8" fill="#000" opacity="0.2" />
+
+    <!-- Lid Top -->
+    <path d="M60 75 L140 75 L135 65 L65 65 Z" fill="url(#boxGradient)" />
+    <path d="M60 75 L140 75 L135 65 L65 65 Z" fill="#8b5cf6" opacity="0.3" />
+
+    <!-- Lid Front Face -->
+    <path d="M60 75 L140 75 L140 82 L60 82 Z" fill="url(#boxGradient)" />
+
+    <!-- Gold Lock on Lid -->
+    <rect x="95" y="68" width="10" height="8" rx="2" fill="url(#goldGradient)" />
+    <circle cx="100" cy="72" r="2" fill="#78350f" />
+
+    <!-- Ornate Lid Decorations -->
+    <line x1="70" y1="69" x2="90" y2="69" stroke="url(#goldGradient)" stroke-width="1.5" />
+    <line x1="110" y1="69" x2="130" y2="69" stroke="url(#goldGradient)" stroke-width="1.5" />
+  </g>
+
+  <!-- Box Body -->
+  <g>
+    <!-- Main Box Front -->
+    <rect x="65" y="82" width="70" height="55" fill="url(#boxGradient)" />
+
+    <!-- Box Side (3D effect) -->
+    <path d="M135 82 L145 88 L145 143 L135 137 Z" fill="#4c1d95" />
+
+    <!-- Box Top visible edge -->
+    <path d="M65 82 L135 82 L145 88 L75 88 Z" fill="#8b5cf6" />
+
+    <!-- Ornate Details -->
+    <rect x="70" y="87" width="60" height="45" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+
+    <!-- Central Keyhole -->
+    <g>
+      <circle cx="100" cy="105" r="6" fill="url(#goldGradient)" />
+      <circle cx="100" cy="105" r="3" fill="#000" opacity="0.6" />
+      <path d="M98 105 L98 115 L102 115 L102 105" fill="#000" opacity="0.6" />
+    </g>
+
+    <!-- Corner Decorations -->
+    <circle cx="75" cy="92" r="2" fill="url(#goldGradient)" />
+    <circle cx="125" cy="92" r="2" fill="url(#goldGradient)" />
+    <circle cx="75" cy="127" r="2" fill="url(#goldGradient)" />
+    <circle cx="125" cy="127" r="2" fill="url(#goldGradient)" />
+
+    <!-- Decorative Lines -->
+    <line x1="75" y1="97" x2="75" y2="122" stroke="url(#goldGradient)" stroke-width="1" opacity="0.6" />
+    <line x1="125" y1="97" x2="125" y2="122" stroke="url(#goldGradient)" stroke-width="1" opacity="0.6" />
+    <line x1="80" y1="92" x2="120" y2="92" stroke="url(#goldGradient)" stroke-width="1" opacity="0.6" />
+    <line x1="80" y1="127" x2="120" y2="127" stroke="url(#goldGradient)" stroke-width="1" opacity="0.6" />
+  </g>
+
+  <!-- Box Shadow -->
+  <ellipse cx="105" cy="142" rx="40" ry="6" fill="#000" opacity="0.3" />
+
+  <!-- Mystical Sparkles -->
+  <g fill="#fbbf24" opacity="0.8">
+    <path d="M50 60 L51 62 L53 63 L51 64 L50 66 L49 64 L47 63 L49 62 Z" />
+    <path d="M150 50 L151 52 L153 53 L151 54 L150 56 L149 54 L147 53 L149 52 Z" />
+    <path d="M160 90 L160.5 91 L162 91.5 L160.5 92 L160 93 L159.5 92 L158 91.5 L159.5 91 Z" />
+    <path d="M40 100 L40.5 101 L42 101.5 L40.5 102 L40 103 L39.5 102 L38 101.5 L39.5 101 Z" />
+  </g>
+
+  <!-- Text: Pandora's Box (optional, can be toggled) -->
+  <text x="100" y="170" font-family="'Cinzel', serif" font-size="18" font-weight="700" fill="#6d28d9" text-anchor="middle">
+    PANDORA'S
+  </text>
+  <text x="100" y="188" font-family="'Cinzel', serif" font-size="20" font-weight="700" fill="#d97706" text-anchor="middle">
+    BOX
+  </text>
+</svg>
