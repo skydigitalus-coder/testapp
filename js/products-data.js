@@ -222,13 +222,111 @@ const products = [
         description: "Create endless shapes with magnetic balls",
         icon: "🧲",
         featured: false
+    },
+
+    // Glass & Pipes
+    {
+        id: 25,
+        name: "Glass Pipe Collection",
+        category: "glass",
+        price: 29.99,
+        description: "Handcrafted glass pipe with unique color pattern",
+        icon: "💎",
+        featured: true
+    },
+    {
+        id: 26,
+        name: "Premium Water Pipe",
+        category: "glass",
+        price: 89.99,
+        description: "High-quality glass water pipe with percolator",
+        icon: "🔮",
+        featured: false
+    },
+    {
+        id: 27,
+        name: "Bubbler Pipe",
+        category: "glass",
+        price: 44.99,
+        description: "Compact bubbler with smooth filtration",
+        icon: "💠",
+        featured: true
+    },
+    {
+        id: 28,
+        name: "Chillum One-Hitter",
+        category: "glass",
+        price: 12.99,
+        description: "Classic glass chillum for on-the-go",
+        icon: "🔷",
+        featured: false
+    },
+
+    // Kratom Products
+    {
+        id: 29,
+        name: "Premium Kratom Powder",
+        category: "kratom",
+        price: 24.99,
+        description: "High-quality kratom powder from trusted sources",
+        icon: "🌿",
+        featured: true
+    },
+    {
+        id: 30,
+        name: "Kratom Capsules",
+        category: "kratom",
+        price: 29.99,
+        description: "Convenient pre-measured kratom capsules",
+        icon: "💊",
+        featured: false
+    },
+    {
+        id: 31,
+        name: "Kratom Extract",
+        category: "kratom",
+        price: 34.99,
+        description: "Concentrated kratom extract for experienced users",
+        icon: "🧪",
+        featured: false
+    },
+
+    // Detox Products
+    {
+        id: 32,
+        name: "Detox Cleanse Kit",
+        category: "detox",
+        price: 39.99,
+        description: "Complete detox system for thorough cleansing",
+        icon: "🧬",
+        featured: true
+    },
+    {
+        id: 33,
+        name: "Quick Detox Drink",
+        category: "detox",
+        price: 19.99,
+        description: "Fast-acting detox beverage",
+        icon: "🥤",
+        featured: false
+    },
+    {
+        id: 34,
+        name: "Detox Pills",
+        category: "detox",
+        price: 24.99,
+        description: "Daily detox supplement capsules",
+        icon: "💊",
+        featured: false
     }
 ];
 
 // Category display names
 const categoryNames = {
+    'glass': 'Glass & Pipes',
     'vapes': 'Vape Devices',
     'eliquids': 'E-Liquids',
-    'accessories': 'Accessories',
-    'novelties': 'Novelties'
+    'kratom': 'Kratom',
+    'detox': 'Detox',
+    'accessories': 'Accessories'
 };
