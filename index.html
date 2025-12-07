@@ -3,9 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pandora's Box - Family-owned vape and smoke shop. Premium vapes, e-liquids, kratom, detox, and glass pipes. Kennewick, Richland, Umatilla & Pendleton.">
-    <title>Pandora's Box - The Glass That Kicks Ass</title>
+    <meta name="description" content="Pandora's Box - The Glass That Kicks Ass! Family-owned vape and smoke shop with 4 locations. Premium vapes, e-liquids, kratom, detox, and glass pipes in Kennewick, Richland, Umatilla & Pendleton.">
+    <meta name="keywords" content="vape shop, smoke shop, kratom, glass pipes, detox, Kennewick, Richland, Umatilla, Pendleton">
+    <title>Pandora's Box - The Glass That Kicks Ass | Family-Owned Smoke & Vape Shop</title>
+    <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Homepage-specific styles */
+        .hero-home {
+            position: relative;
+            background: linear-gradient(135deg,
+                var(--color-primary-900) 0%,
+                var(--color-primary-700) 50%,
+                var(--color-secondary-700) 100%);
+            color: var(--color-text-inverse);
+            padding: var(--space-32) 0 var(--space-24);
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(217, 119, 6, 0.2) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-family-heading);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: var(--font-weight-extrabold);
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-6);
+            background: linear-gradient(135deg, var(--color-secondary-300), var(--color-secondary-100));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 3vw, 1.5rem);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-10);
+            opacity: 0.95;
+            line-height: var(--line-height-relaxed);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Product Categories Section */
+        .categories-section {
+            padding: var(--space-20) 0;
+            background: var(--color-bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .section-title {
+            font-family: var(--font-family-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .section-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .category-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            text-align: center;
+            text-decoration: none;
+            color: var(--color-text-primary);
+            box-shadow: var(--shadow-base);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl), var(--shadow-primary-glow);
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+
+        .category-card h3 {
+            font-family: var(--font-family-heading);
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .category-card p {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-base);
+        }
+
+        /* Deals Carousel Section */
+        .deals-section {
+            padding: var(--space-20) 0;
+            background: linear-gradient(135deg, var(--color-primary-900), var(--color-neutral-900));
+            color: var(--color-text-inverse);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deals-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .deal-slide {
+            display: none;
+            text-align: center;
+            padding: var(--space-12) var(--space-6);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .deal-slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .deal-badge {
+            display: inline-block;
+            background: var(--color-secondary-500);
+            color: var(--color-neutral-900);
+            padding: var(--space-2) var(--space-6);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-wide);
+            margin-bottom: var(--space-4);
+        }
+
+        .deal-title {
+            font-family: var(--font-family-heading);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: var(--space-4);
+        }
+
+        .deal-description {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-8);
+            opacity: 0.9;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .carousel-dot.active {
+            background: var(--color-secondary-500);
+            width: 32px;
+        }
+
+        /* Why Choose Section */
+        .why-choose-section {
+            padding: var(--space-20) 0;
+            background: var(--color-bg-primary);
+        }
+
+        .value-props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+        }
+
+        .value-prop {
+            text-align: center;
+            padding: var(--space-6);
+        }
+
+        .value-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+
+        .value-prop h3 {
+            font-family: var(--font-family-heading);
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-3);
+        }
+
+        .value-prop p {
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* Locations Section */
+        .locations-section {
+            padding: var(--space-20) 0;
+            background: var(--color-bg-secondary);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+
+        .location-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-base);
+            transition: all var(--transition-base);
+        }
+
+        .location-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .location-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            color: var(--color-secondary-600);
+        }
+
+        .location-card h3 {
+            font-family: var(--font-family-heading);
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-3);
+        }
+
+        .location-card p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-2);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: var(--space-20) 0;
+            background: var(--color-bg-primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+
+        .testimonial-card {
+            background: var(--color-primary-50);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            border-left: 4px solid var(--color-primary);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .testimonial-stars {
+            color: var(--color-secondary-500);
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-3);
+        }
+
+        .testimonial-text {
+            font-size: var(--font-size-base);
+            color: var(--color-text-primary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-4);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: var(--space-20) 0;
+            background: linear-gradient(135deg, var(--color-accent-700), var(--color-accent-900));
+            color: var(--color-text-inverse);
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .newsletter-content h2 {
+            font-family: var(--font-family-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: var(--space-4);
+        }
+
+        .newsletter-content p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-8);
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: var(--space-3);
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: var(--space-4);
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-base);
+        }
+
+        .newsletter-form button {
+            padding: var(--space-4) var(--space-8);
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background: var(--color-secondary-500);
+            color: var(--color-neutral-900);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-base);
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-6);
+        }
+
+        @media (min-width: 768px) {
+            .newsletter-form {
+                flex-direction: row;
+            }
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 var(--space-8);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Age Verification Modal -->
@@ -29,13 +487,13 @@
                     <h1>Pandora's Box</h1>
                     <p class="tagline">The Glass That Kicks Ass</p>
                 </div>
-                <button class="mobile-menu-toggle" id="menuToggle">
+                <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
             </div>
-            <nav id="mainNav" class="main-nav">
+            <nav id="mainNav" class="main-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="products.html">Products</a></li>
@@ -47,84 +505,223 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-home" aria-label="Hero section">
         <div class="container">
             <div class="hero-content">
-                <h2>Welcome to Pandora's Box</h2>
-                <p>Your ultimate destination for pipes, kratom, detox, and vape products - Local & Family-Owned</p>
-                <a href="products.html" class="btn btn-primary btn-large">Shop Now</a>
+                <h2 class="hero-tagline">The Glass That Kicks Ass</h2>
+                <p class="hero-subtitle">
+                    Family-owned and locally operated with 4 locations across Washington & Oregon.<br>
+                    Your trusted source for premium vape, kratom, detox, and glass products.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="products.html" class="btn btn-secondary btn-xl">Shop Now</a>
+                    <a href="#locations" class="btn btn-outline btn-xl">Find a Location</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Categories -->
-    <section class="categories">
+    <!-- Product Categories Grid -->
+    <section class="categories-section" aria-labelledby="categories-heading">
         <div class="container">
-            <h2 class="section-title">Shop by Category</h2>
-            <div class="category-grid">
-                <a href="products.html?category=glass" class="category-card">
-                    <div class="category-icon">💎</div>
-                    <h3>Glass & Pipes</h3>
-                    <p>Premium glass pipes & bongs</p>
-                </a>
+            <div class="section-header">
+                <h2 class="section-title" id="categories-heading">Shop by Category</h2>
+                <p class="section-subtitle">Explore our wide selection of premium products</p>
+            </div>
+            <div class="categories-grid">
                 <a href="products.html?category=vapes" class="category-card">
-                    <div class="category-icon">💨</div>
-                    <h3>Vape Devices</h3>
-                    <p>Starter kits to advanced mods</p>
+                    <span class="category-icon" aria-hidden="true">💨</span>
+                    <h3>Vape Products</h3>
+                    <p>Premium devices, mods, and starter kits from top brands</p>
                 </a>
-                <a href="products.html?category=eliquids" class="category-card">
-                    <div class="category-icon">🧪</div>
-                    <h3>E-Liquids</h3>
-                    <p>Premium e-liquids & flavors</p>
+                <a href="products.html?category=glass" class="category-card">
+                    <span class="category-icon" aria-hidden="true">💎</span>
+                    <h3>Glass Pipes</h3>
+                    <p>Artistic glass pipes, bongs, and water pipes</p>
                 </a>
                 <a href="products.html?category=kratom" class="category-card">
-                    <div class="category-icon">🌿</div>
+                    <span class="category-icon" aria-hidden="true">🌿</span>
                     <h3>Kratom</h3>
-                    <p>Quality kratom products</p>
+                    <p>Quality kratom products in various strains and forms</p>
                 </a>
                 <a href="products.html?category=detox" class="category-card">
-                    <div class="category-icon">🧬</div>
+                    <span class="category-icon" aria-hidden="true">🧬</span>
                     <h3>Detox</h3>
-                    <p>Cleansing solutions</p>
+                    <p>Effective cleansing and detox solutions</p>
                 </a>
                 <a href="products.html?category=accessories" class="category-card">
-                    <div class="category-icon">🔋</div>
+                    <span class="category-icon" aria-hidden="true">🔋</span>
                     <h3>Accessories</h3>
-                    <p>Coils, tanks, chargers & more</p>
+                    <p>Coils, tanks, batteries, chargers, and more</p>
+                </a>
+                <a href="products.html?category=deals" class="category-card">
+                    <span class="category-icon" aria-hidden="true">🎁</span>
+                    <h3>Deals</h3>
+                    <p>Special offers and discounted products</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="featured-products">
+    <!-- Current Deals/Promotions Carousel -->
+    <section class="deals-section" aria-labelledby="deals-heading">
         <div class="container">
-            <h2 class="section-title">Featured Products</h2>
-            <div id="featuredProductsGrid" class="product-grid">
-                <!-- Products will be loaded by JavaScript -->
+            <div class="section-header">
+                <h2 class="section-title" id="deals-heading" style="color: var(--color-text-inverse);">Current Deals & Promotions</h2>
+            </div>
+            <div class="deals-carousel">
+                <div class="deal-slide active">
+                    <span class="deal-badge">Limited Time Offer</span>
+                    <h3 class="deal-title">Buy 2 Get 1 Free on All E-Liquids</h3>
+                    <p class="deal-description">Stock up on your favorite flavors! Mix and match any e-liquids in our collection.</p>
+                    <a href="products.html?category=eliquids" class="btn btn-secondary btn-lg">Shop E-Liquids</a>
+                </div>
+                <div class="deal-slide">
+                    <span class="deal-badge">Weekend Special</span>
+                    <h3 class="deal-title">20% Off Premium Glass Pipes</h3>
+                    <p class="deal-description">Elevate your collection with handcrafted glass pieces at unbeatable prices.</p>
+                    <a href="products.html?category=glass" class="btn btn-secondary btn-lg">Shop Glass</a>
+                </div>
+                <div class="deal-slide">
+                    <span class="deal-badge">New Customer</span>
+                    <h3 class="deal-title">15% Off Your First Purchase</h3>
+                    <p class="deal-description">Sign up for our newsletter and get instant savings on your first order!</p>
+                    <a href="#newsletter" class="btn btn-secondary btn-lg">Get Started</a>
+                </div>
+            </div>
+            <div class="carousel-controls" role="tablist" aria-label="Carousel controls">
+                <button class="carousel-dot active" aria-label="Show slide 1" data-slide="0"></button>
+                <button class="carousel-dot" aria-label="Show slide 2" data-slide="1"></button>
+                <button class="carousel-dot" aria-label="Show slide 3" data-slide="2"></button>
             </div>
         </div>
     </section>
 
-    <!-- Info Banner -->
-    <section class="info-banner">
+    <!-- Why Choose Pandora's Box -->
+    <section class="why-choose-section" aria-labelledby="why-choose-heading">
         <div class="container">
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-icon">🏠</div>
-                    <h3>Local & Family-Owned</h3>
-                    <p>Serving WA & OR communities</p>
+            <div class="section-header">
+                <h2 class="section-title" id="why-choose-heading">Why Choose Pandora's Box?</h2>
+                <p class="section-subtitle">We're more than just a shop – we're your trusted local partner</p>
+            </div>
+            <div class="value-props-grid">
+                <div class="value-prop">
+                    <span class="value-icon" aria-hidden="true">🏠</span>
+                    <h3>Local Family-Owned</h3>
+                    <p>Proudly serving Washington and Oregon communities since day one. We're your neighbors, and we care about our local area.</p>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">💯</div>
-                    <h3>Quality Products</h3>
-                    <p>From trusted brands at fair prices</p>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">🌟</div>
+                <div class="value-prop">
+                    <span class="value-icon" aria-hidden="true">🌟</span>
                     <h3>Expert Staff</h3>
-                    <p>Knowledgeable about latest trends</p>
+                    <p>Our knowledgeable team stays up-to-date with the latest products and trends to provide you with the best recommendations.</p>
                 </div>
+                <div class="value-prop">
+                    <span class="value-icon" aria-hidden="true">💯</span>
+                    <h3>Quality Guarantee</h3>
+                    <p>We carefully curate our inventory to include only premium products from trusted brands you can rely on.</p>
+                </div>
+                <div class="value-prop">
+                    <span class="value-icon" aria-hidden="true">📍</span>
+                    <h3>Multi-Location Convenience</h3>
+                    <p>With 4 locations across WA and OR, there's always a Pandora's Box nearby to serve you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="locations-section" aria-labelledby="locations-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="locations-heading">Our Locations</h2>
+                <p class="section-subtitle">Visit us at any of our 4 convenient locations</p>
+            </div>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-icon">📍</div>
+                    <h3>Kennewick, WA</h3>
+                    <p><strong>Address:</strong> Coming Soon</p>
+                    <p><strong>Phone:</strong> (509) XXX-XXXX</p>
+                    <p><strong>Hours:</strong> Mon-Sat 10am-8pm, Sun 11am-6pm</p>
+                </div>
+                <div class="location-card">
+                    <div class="location-icon">📍</div>
+                    <h3>Richland, WA</h3>
+                    <p><strong>Address:</strong> Coming Soon</p>
+                    <p><strong>Phone:</strong> (509) XXX-XXXX</p>
+                    <p><strong>Hours:</strong> Mon-Sat 10am-8pm, Sun 11am-6pm</p>
+                </div>
+                <div class="location-card">
+                    <div class="location-icon">📍</div>
+                    <h3>Umatilla, OR</h3>
+                    <p><strong>Address:</strong> Coming Soon</p>
+                    <p><strong>Phone:</strong> (541) XXX-XXXX</p>
+                    <p><strong>Hours:</strong> Mon-Sat 10am-8pm, Sun 11am-6pm</p>
+                </div>
+                <div class="location-card">
+                    <div class="location-icon">📍</div>
+                    <h3>Pendleton, OR</h3>
+                    <p><strong>Address:</strong> Coming Soon</p>
+                    <p><strong>Phone:</strong> (541) XXX-XXXX</p>
+                    <p><strong>Hours:</strong> Mon-Sat 10am-8pm, Sun 11am-6pm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="testimonials-section" aria-labelledby="testimonials-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="testimonials-heading">What Our Customers Say</h2>
+                <p class="section-subtitle">Real feedback from our valued community</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-text">"Best vape shop in the area! The staff is incredibly knowledgeable and always helps me find exactly what I need. Great selection and fair prices!"</p>
+                    <p class="testimonial-author">— Sarah M., Kennewick</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-text">"I love supporting local businesses, and Pandora's Box never disappoints. Their kratom selection is outstanding, and the quality is always top-notch."</p>
+                    <p class="testimonial-author">— Mike R., Richland</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-text">"Amazing glass collection! I found a beautiful piece that I couldn't find anywhere else. The staff really knows their products and takes time to explain everything."</p>
+                    <p class="testimonial-author">— Jessica L., Pendleton</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-text">"Family-owned businesses are the best! You can tell they genuinely care about their customers. I've been coming here for years and won't go anywhere else."</p>
+                    <p class="testimonial-author">— Tom D., Umatilla</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section id="newsletter" class="newsletter-section" aria-labelledby="newsletter-heading">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-icon" aria-hidden="true">✉️</div>
+                <h2 id="newsletter-heading">Join Our Newsletter</h2>
+                <div class="discount-badge">Get 15% OFF Your First Purchase!</div>
+                <p>Sign up to receive exclusive deals, new product announcements, and special offers delivered straight to your inbox.</p>
+                <form class="newsletter-form" id="newsletterForm" aria-label="Newsletter signup form">
+                    <input
+                        type="email"
+                        placeholder="Enter your email address"
+                        required
+                        aria-label="Email address"
+                        id="newsletterEmail"
+                    >
+                    <button type="submit" class="btn btn-secondary">Subscribe Now</button>
+                </form>
+                <p style="font-size: var(--font-size-sm); margin-top: var(--space-4); opacity: 0.8;">
+                    We respect your privacy. Unsubscribe anytime.
+                </p>
             </div>
         </div>
     </section>
@@ -164,5 +761,6 @@
     <script src="js/products-data.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/homepage.js"></script>
 </body>
 </html>
