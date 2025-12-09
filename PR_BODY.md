@@ -1,5 +1,5 @@
 ## Summary
-This PR completes the Shopify e-commerce integration for Pandora's Box Smoke Shop, enabling real-time product loading, shopping cart functionality, and Buy Online Pick Up In Store (BOPIS) capabilities across all 4 store locations.
+This PR completes the Shopify e-commerce integration for Pandora's Box Smoke Shop, enabling real-time product loading, shopping cart functionality, and Buy Online Pick Up In Store (BOPIS) capabilities across all 3 store locations.
 
 ## What's Included
 
@@ -7,7 +7,7 @@ This PR completes the Shopify e-commerce integration for Pandora's Box Smoke Sho
 - **File**: `config/shopify.js`
 - Configured store credentials for `fsqf5y-4r.myshopify.com`
 - Added Storefront API access token
-- Mapped all 4 store locations (Kennewick, Richland, Umatilla, Pendleton)
+- Mapped all 3 store locations (Kennewick, Richland, Pendleton)
 - Set up product collection IDs structure
 
 ### 2. Products Page Integration (5c47350)
@@ -127,4 +127,4 @@ The products page now:
 
 **Store**: fsqf5y-4r.myshopify.com
 **Integration**: Storefront API
-**Locations**: 4 stores (WA & OR)
+**Locations**: 3 stores (WA & OR)

@@ -50,7 +50,7 @@ Your website is now connected to Shopify. Customers can:
 ### Add Store Locations for BOPIS
 
 1. In Shopify Admin: **Settings** → **Locations**
-2. Add all 4 stores (Kennewick, Richland, Umatilla, Pendleton)
+2. Add all 3 stores (Kennewick, Richland, Pendleton)
 3. Enable **Local pickup** in **Settings** → **Shipping**
 4. Get location IDs and update `config/shopify.js`
 

@@ -54,10 +54,9 @@ const SHOPIFY_CONFIG = {
 ### 3.1 Add Locations in Shopify
 
 1. In Shopify Admin, go to **Settings** → **Locations**
-2. Add all 4 store locations:
+2. Add all 3 store locations:
    - Kennewick, WA
    - Richland, WA
-   - Umatilla, OR
    - Pendleton, OR
 
 ### 3.2 Get Location IDs
@@ -182,7 +181,7 @@ Shopify provides test mode for development:
 ### 9.1 Pre-Launch Checklist
 
 - [ ] All real products added to Shopify
-- [ ] All 4 locations configured
+- [ ] All 3 locations configured
 - [ ] BOPIS enabled
 - [ ] Payment gateway configured
 - [ ] Taxes configured for WA and OR
