@@ -15,13 +15,13 @@ const SHOPIFY_CONFIG = {
     // Get these from Shopify Admin > Settings > Locations
     locations: {
         kennewick: {
-            id: 'gid://shopify/Location/KENNEWICK_LOCATION_ID',
+            id: 'gid://shopify/Location/80352051252',
             name: 'Kennewick, WA',
             address: '5300 W. Clearwater Avenue, Suite B, Kennewick, WA 99336',
             phone: '(509) 396-9700'
         },
         richland: {
-            id: 'gid://shopify/Location/RICHLAND_LOCATION_ID',
+            id: 'gid://shopify/Location/80342089780',
             name: 'Richland, WA',
             address: '960 George Washington Way, Richland, WA',
             phone: '(509) 396-9700'
@@ -33,7 +33,7 @@ const SHOPIFY_CONFIG = {
             phone: '(509) 396-9700'
         },
         pendleton: {
-            id: 'gid://shopify/Location/PENDLETON_LOCATION_ID',
+            id: 'gid://shopify/Location/80352247860',
             name: 'Pendleton, OR',
             address: 'Pendleton, Oregon',
             phone: '(509) 396-9700'
@@ -43,12 +43,34 @@ const SHOPIFY_CONFIG = {
     // Collection IDs for product categories
     // Get these from your Shopify collections
     collections: {
-        'eliquids': 'gid://shopify/Collection/E_LIQUIDS_COLLECTION_ID',
-        'glass-pipes': 'gid://shopify/Collection/GLASS_PIPES_COLLECTION_ID',
-        'kratom': 'gid://shopify/Collection/KRATOM_COLLECTION_ID',
-        'detox': 'gid://shopify/Collection/DETOX_COLLECTION_ID',
-        'vapes': 'gid://shopify/Collection/VAPES_COLLECTION_ID',
-        'accessories': 'gid://shopify/Collection/ACCESSORIES_COLLECTION_ID'
+        // Vape Products
+        'eliquids': 'gid://shopify/Collection/305974968372',
+        'disposable-vapes': 'gid://shopify/Collection/305980670004',
+        'flum-vapes': 'gid://shopify/Collection/305980473396',
+        'lost-mary-vapes': 'gid://shopify/Collection/305980375092',
+        'elf-bar-vapes': 'gid://shopify/Collection/305980342324',
+        'geek-bar-vapes': 'gid://shopify/Collection/305980244020',
+        'pods-pod-mods': 'gid://shopify/Collection/305975033308',
+        'box-mods-kits': 'gid://shopify/Collection/305975001140',
+        'coils-accessories': 'gid://shopify/Collection/305975066676',
+
+        // Smoking Accessories
+        'glass-pipes': 'gid://shopify/Collection/305977393204',
+        'silicone-pipes': 'gid://shopify/Collection/305977425972',
+        'smoking-accessories': 'gid://shopify/Collection/305977262132',
+        'lighters-torches': 'gid://shopify/Collection/305977524276',
+        'scales': 'gid://shopify/Collection/305977491508',
+
+        // Specialty Products
+        'kratom': 'gid://shopify/Collection/305977229364',
+        'detox-kits': 'gid://shopify/Collection/305977458740',
+
+        // Other Categories
+        'clothing': 'gid://shopify/Collection/305980604468',
+        'seasonal-limited': 'gid://shopify/Collection/305975230516',
+        'customer-favorites': 'gid://shopify/Collection/305975164980',
+        'new-arrivals': 'gid://shopify/Collection/305975132212',
+        'top-picks': 'gid://shopify/Collection/305968807988'
     }
 };
 
