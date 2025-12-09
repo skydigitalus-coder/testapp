@@ -4,12 +4,12 @@
 const SHOPIFY_CONFIG = {
     // Your Shopify store domain (without https://)
     // Example: 'your-store-name.myshopify.com'
-    domain: 'fsqf5y-4r.myshopify.com',
+    domain: 'YOUR_STORE_NAME.myshopify.com',
 
     // Storefront API Access Token
     // Generate this in Shopify Admin > Apps > Develop apps > Create an app
     // Then enable Storefront API and copy the access token
-    storefrontAccessToken: 'c1ab5f37faaee7f24ffff71a810d314f',
+    storefrontAccessToken: 'YOUR_STOREFRONT_ACCESS_TOKEN',
 
     // Store location IDs for BOPIS
     // Get these from Shopify Admin > Settings > Locations
