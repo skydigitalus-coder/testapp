@@ -3,11 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse our full selection of glass pipes, vapes, e-liquids, kratom, detox, and accessories">
-    <title>Products - Pandora's Box</title>
+    <meta name="description" content="Find your nearest Pandora's Box location in Washington & Oregon. Buy online and pick up in-store at Kennewick, Richland, Umatilla, or Pendleton.">
+    <title>Store Locations - Pandora's Box</title>
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/navigation.css">
+    <style>
+        /* Locations Page Specific Styles */
+        .locations-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: var(--color-text-inverse);
+            padding: var(--space-20) 0;
+            text-align: center;
+        }
+
+        .locations-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: var(--space-4);
+        }
+
+        .bopis-banner {
+            background: var(--color-accent-light);
+            padding: var(--space-8);
+            border-radius: var(--radius-lg);
+            margin: var(--space-8) 0;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .bopis-banner h2 {
+            color: var(--color-accent);
+            margin-bottom: var(--space-4);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+        }
+
+        .location-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border: 2px solid transparent;
+        }
+
+        .location-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 2px solid var(--color-neutral-200);
+        }
+
+        .location-icon {
+            font-size: 2.5rem;
+        }
+
+        .location-title {
+            flex: 1;
+        }
+
+        .location-title h3 {
+            color: var(--color-primary);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-1);
+        }
+
+        .location-badge {
+            background: var(--color-accent);
+            color: white;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+        }
+
+        .detail-icon {
+            font-size: 1.25rem;
+            min-width: 24px;
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-content strong {
+            display: block;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        .detail-content a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .detail-content a:hover {
+            text-decoration: underline;
+        }
+
+        .location-actions {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .location-actions .btn {
+            flex: 1;
+        }
+
+        .how-it-works {
+            background: var(--color-primary-light);
+            padding: var(--space-12) 0;
+            margin-top: var(--space-16);
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .step-card {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin: 0 auto var(--space-4);
+        }
+
+        .step-card h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-3);
+        }
+    </style>
 </head>
 <body>
     <!-- Age Verification Modal -->
@@ -325,59 +497,211 @@
         </a>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Locations Hero -->
+    <section class="locations-hero">
         <div class="container">
-            <h1>Our Products</h1>
-            <p>Discover our complete selection</p>
+            <h1>Our Locations</h1>
+            <p>Visit us in Washington & Oregon. Buy online, pick up in-store!</p>
         </div>
     </section>
 
-    <!-- Filters Section -->
-    <section class="filters-section">
-        <div class="container">
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="searchInput">Search</label>
-                    <input type="text" id="searchInput" placeholder="Search products...">
-                </div>
-                <div class="filter-group">
-                    <label for="categoryFilter">Category</label>
-                    <select id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="glass">Glass & Pipes</option>
-                        <option value="vapes">Vape Devices</option>
-                        <option value="eliquids">E-Liquids</option>
-                        <option value="kratom">Kratom</option>
-                        <option value="detox">Detox</option>
-                        <option value="accessories">Accessories</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="sortFilter">Sort By</label>
-                    <select id="sortFilter">
-                        <option value="name-asc">Name (A-Z)</option>
-                        <option value="name-desc">Name (Z-A)</option>
-                        <option value="price-asc">Price (Low to High)</option>
-                        <option value="price-desc">Price (High to Low)</option>
-                    </select>
-                </div>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- BOPIS Banner -->
+        <section class="container">
+            <div class="bopis-banner">
+                <h2>🚀 Buy Online, Pick Up In Store (BOPIS)</h2>
+                <p>Shop from home and pick up your order at any of our locations! Get your products the same day without waiting for shipping. Simply place your order online, select your preferred store location, and we'll have it ready for you within hours.</p>
+                <a href="products.html" class="btn btn-accent" style="margin-top: var(--space-4);">Start Shopping →</a>
             </div>
-        </div>
-    </section>
 
-    <!-- Products Section -->
-    <section class="products-section">
-        <div class="container">
-            <div class="products-header">
-                <h2>All Products</h2>
-                <p class="product-count" id="productCount">0 products</p>
+            <!-- Location Cards -->
+            <div class="location-grid">
+                <!-- Kennewick, WA -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <span class="location-icon">📍</span>
+                        <div class="location-title">
+                            <h3>Kennewick</h3>
+                            <span class="location-badge">WA</span>
+                        </div>
+                    </div>
+                    <div class="location-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">🏢</span>
+                            <div class="detail-content">
+                                <strong>Address</strong>
+                                5300 W. Clearwater Avenue, Suite B<br>
+                                Kennewick, WA 99336
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📞</span>
+                            <div class="detail-content">
+                                <strong>Phone</strong>
+                                <a href="tel:+15093969700">(509) 396-9700</a>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🕐</span>
+                            <div class="detail-content">
+                                <strong>Hours</strong>
+                                Monday - Sunday: 10:00 AM - 8:00 PM
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-actions">
+                        <a href="https://maps.google.com/?q=5300+W+Clearwater+Avenue+Suite+B+Kennewick+WA+99336" target="_blank" class="btn btn-outline btn-sm">Get Directions</a>
+                        <a href="tel:+15093969700" class="btn btn-primary btn-sm">Call Store</a>
+                    </div>
+                </div>
+
+                <!-- Richland, WA -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <span class="location-icon">📍</span>
+                        <div class="location-title">
+                            <h3>Richland</h3>
+                            <span class="location-badge">WA</span>
+                        </div>
+                    </div>
+                    <div class="location-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">🏢</span>
+                            <div class="detail-content">
+                                <strong>Address</strong>
+                                960 George Washington Way<br>
+                                Richland, WA
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📞</span>
+                            <div class="detail-content">
+                                <strong>Phone</strong>
+                                <a href="tel:+15093969700">(509) 396-9700</a>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🕐</span>
+                            <div class="detail-content">
+                                <strong>Hours</strong>
+                                Monday - Sunday: 10:00 AM - 8:00 PM
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-actions">
+                        <a href="https://maps.google.com/?q=960+George+Washington+Way+Richland+WA" target="_blank" class="btn btn-outline btn-sm">Get Directions</a>
+                        <a href="tel:+15093969700" class="btn btn-primary btn-sm">Call Store</a>
+                    </div>
+                </div>
+
+                <!-- Umatilla, OR -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <span class="location-icon">📍</span>
+                        <div class="location-title">
+                            <h3>Umatilla</h3>
+                            <span class="location-badge">OR</span>
+                        </div>
+                    </div>
+                    <div class="location-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">🏢</span>
+                            <div class="detail-content">
+                                <strong>Address</strong>
+                                Umatilla, Oregon
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📞</span>
+                            <div class="detail-content">
+                                <strong>Phone</strong>
+                                <a href="tel:+15093969700">(509) 396-9700</a>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🕐</span>
+                            <div class="detail-content">
+                                <strong>Hours</strong>
+                                Monday - Sunday: 10:00 AM - 8:00 PM
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-actions">
+                        <a href="https://maps.google.com/?q=Umatilla+Oregon" target="_blank" class="btn btn-outline btn-sm">Get Directions</a>
+                        <a href="tel:+15093969700" class="btn btn-primary btn-sm">Call Store</a>
+                    </div>
+                </div>
+
+                <!-- Pendleton, OR -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <span class="location-icon">📍</span>
+                        <div class="location-title">
+                            <h3>Pendleton</h3>
+                            <span class="location-badge">OR</span>
+                        </div>
+                    </div>
+                    <div class="location-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">🏢</span>
+                            <div class="detail-content">
+                                <strong>Address</strong>
+                                Pendleton, Oregon
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📞</span>
+                            <div class="detail-content">
+                                <strong>Phone</strong>
+                                <a href="tel:+15093969700">(509) 396-9700</a>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🕐</span>
+                            <div class="detail-content">
+                                <strong>Hours</strong>
+                                Monday - Sunday: 10:00 AM - 8:00 PM
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-actions">
+                        <a href="https://maps.google.com/?q=Pendleton+Oregon" target="_blank" class="btn btn-outline btn-sm">Get Directions</a>
+                        <a href="tel:+15093969700" class="btn btn-primary btn-sm">Call Store</a>
+                    </div>
+                </div>
             </div>
-            <div id="productsGrid" class="product-grid">
-                <!-- Products will be loaded by JavaScript -->
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2>How Buy Online, Pick Up In Store Works</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Shop Online</h3>
+                        <p>Browse our full product catalog and add items to your cart from the comfort of home.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Select Your Store</h3>
+                        <p>At checkout, choose which of our 4 locations is most convenient for you to pick up.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>We Prepare Your Order</h3>
+                        <p>Our team will gather your items and have them ready for pickup within a few hours.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Pick Up & Enjoy</h3>
+                        <p>Come to the store with your order confirmation and ID (21+). We'll have it ready!</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -390,10 +714,10 @@
                 <div class="footer-section">
                     <h4>Our Locations</h4>
                     <ul>
-                        <li>Kennewick, WA</li>
-                        <li>Richland, WA</li>
-                        <li>Umatilla, OR</li>
-                        <li>Pendleton, OR</li>
+                        <li><a href="locations.html">Kennewick, WA</a></li>
+                        <li><a href="locations.html">Richland, WA</a></li>
+                        <li><a href="locations.html">Umatilla, OR</a></li>
+                        <li><a href="locations.html">Pendleton, OR</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -401,7 +725,9 @@
                     <ul>
                         <li><a href="products.html">Products</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="about.html#contact">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -415,6 +741,5 @@
     <script src="js/cart.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/products.js"></script>
 </body>
 </html>

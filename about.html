@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn more about Pandora's Box - Family-owned vape and smoke shop serving Washington & Oregon">
     <title>About Us - Pandora's Box</title>
+    <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navigation.css">
 </head>
 <body>
     <!-- Age Verification Modal -->
@@ -21,29 +23,307 @@
         </div>
     </div>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>Pandora's Box</h1>
-                    <p class="tagline">The Glass That Kicks Ass</p>
-                </div>
-                <button class="mobile-menu-toggle" id="menuToggle">
+    <!-- Skip to main content (Accessibility) -->
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<!-- Top Announcement Banner -->
+<div class="top-banner">
+    <div class="top-banner-content">
+        <div class="top-banner-text">
+            🎉 <strong>New Customer Special:</strong> Get 15% OFF your first purchase! Use code: WELCOME15
+        </div>
+        <button class="top-banner-close" aria-label="Close banner">&times;</button>
+    </div>
+</div>
+
+<!-- Main Site Header -->
+<header class="site-header">
+    <div class="header-container">
+        <div class="header-main">
+            <!-- Logo -->
+            <a href="index.html" class="header-logo">
+                <h1>Pandora's Box</h1>
+                <span class="tagline">The Glass That Kicks Ass</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop" aria-label="Main navigation">
+                <ul class="nav-menu">
+                    <!-- Shop with Mega Menu -->
+                    <li class="nav-item has-dropdown">
+                        <a href="products.html" class="nav-link">
+                            Shop
+                            <span class="nav-link-icon" aria-hidden="true">▼</span>
+                        </a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-grid">
+                                <!-- Column 1: Vape Products -->
+                                <div class="mega-menu-column">
+                                    <h3>Vape Products</h3>
+                                    <ul class="mega-menu-list">
+                                        <li><a href="products.html?category=disposables" class="mega-menu-link">Disposables</a></li>
+                                        <li><a href="products.html?category=pod-systems" class="mega-menu-link">Pod Systems</a></li>
+                                        <li><a href="products.html?category=starter-kits" class="mega-menu-link">Starter Kits</a></li>
+                                        <li><a href="products.html?category=eliquids" class="mega-menu-link">E-Liquids</a></li>
+                                        <li><a href="products.html?category=coils" class="mega-menu-link">Replacement Coils</a></li>
+                                        <li><a href="products.html?category=tanks" class="mega-menu-link">Tanks & Atomizers</a></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Column 2: Smoking Accessories -->
+                                <div class="mega-menu-column">
+                                    <h3>Smoking Accessories</h3>
+                                    <ul class="mega-menu-list">
+                                        <li><a href="products.html?category=glass-pipes" class="mega-menu-link">Glass Pipes</a></li>
+                                        <li><a href="products.html?category=bongs" class="mega-menu-link">Water Pipes/Bongs</a></li>
+                                        <li><a href="products.html?category=hand-pipes" class="mega-menu-link">Hand Pipes</a></li>
+                                        <li><a href="products.html?category=grinders" class="mega-menu-link">Grinders</a></li>
+                                        <li><a href="products.html?category=cleaning" class="mega-menu-link">Cleaning Supplies</a></li>
+                                        <li><a href="products.html?category=storage" class="mega-menu-link">Storage</a></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Column 3: Specialty -->
+                                <div class="mega-menu-column">
+                                    <h3>Specialty</h3>
+                                    <ul class="mega-menu-list">
+                                        <li><a href="products.html?category=kratom" class="mega-menu-link">Kratom</a></li>
+                                        <li><a href="products.html?category=detox" class="mega-menu-link">Detox Products</a></li>
+                                        <li><a href="products.html?category=cbd" class="mega-menu-link">CBD Products</a></li>
+                                        <li><a href="products.html?category=accessories" class="mega-menu-link">Accessories</a></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Column 4: Shop By -->
+                                <div class="mega-menu-column">
+                                    <h3>Shop By</h3>
+                                    <ul class="mega-menu-list">
+                                        <li><a href="products.html?filter=new" class="mega-menu-link">New Arrivals</a></li>
+                                        <li><a href="products.html?filter=bestsellers" class="mega-menu-link">Best Sellers</a></li>
+                                        <li><a href="products.html?filter=clearance" class="mega-menu-link">Clearance</a></li>
+                                        <li><a href="products.html?filter=brands" class="mega-menu-link">All Brands</a></li>
+                                    </ul>
+                                    <div class="mega-menu-featured">
+                                        <div class="mega-menu-featured-image" aria-hidden="true">🔥</div>
+                                        <h4>Hot Deal!</h4>
+                                        <a href="products.html?filter=deals" class="btn btn-primary btn-sm">View Deals</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Other Nav Items -->
+                    <li class="nav-item">
+                        <a href="products.html?filter=deals" class="nav-link">Deals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#locations" class="nav-link">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Utility Navigation -->
+            <div class="nav-utility">
+                <!-- Phone Number -->
+                <a href="tel:+15095551234" class="utility-phone">
+                    <span aria-hidden="true">📞</span>
+                    <span>(509) 555-1234</span>
+                </a>
+
+                <!-- Search -->
+                <a href="#" id="searchOpen" class="utility-link" aria-label="Search">
+                    <span aria-hidden="true">🔍</span>
+                    <span class="utility-link-text">Search</span>
+                </a>
+
+                <!-- Account -->
+                <a href="about.html#contact" class="utility-link" aria-label="Account">
+                    <span aria-hidden="true">👤</span>
+                    <span class="utility-link-text">Account</span>
+                </a>
+
+                <!-- Cart -->
+                <a href="cart.html" class="utility-link" aria-label="Shopping cart">
+                    <span aria-hidden="true">🛒</span>
+                    <span class="utility-link-text">Cart</span>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
             </div>
-            <nav id="mainNav" class="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="cart.html">Cart <span id="cartCount" class="cart-badge">0</span></a></li>
-                </ul>
-            </nav>
         </div>
+    </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-overlay"></div>
+<aside class="mobile-nav-drawer">
+    <div class="mobile-nav-header">
+        <h2>Menu</h2>
+    </div>
+    <nav aria-label="Mobile navigation">
+        <ul class="mobile-nav-menu">
+            <li class="mobile-nav-item">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link" data-submenu="mobile-shop-menu">
+                    Shop
+                    <span class="nav-link-icon" aria-hidden="true">▼</span>
+                </a>
+                <div id="mobile-shop-menu" class="mobile-submenu">
+                    <div class="mobile-submenu-grid">
+                        <div class="mobile-submenu-section">
+                            <h4>Vape Products</h4>
+                            <ul class="mobile-submenu-list">
+                                <li><a href="products.html?category=disposables" class="mobile-submenu-link">Disposables</a></li>
+                                <li><a href="products.html?category=pod-systems" class="mobile-submenu-link">Pod Systems</a></li>
+                                <li><a href="products.html?category=starter-kits" class="mobile-submenu-link">Starter Kits</a></li>
+                                <li><a href="products.html?category=eliquids" class="mobile-submenu-link">E-Liquids</a></li>
+                                <li><a href="products.html?category=coils" class="mobile-submenu-link">Replacement Coils</a></li>
+                                <li><a href="products.html?category=tanks" class="mobile-submenu-link">Tanks & Atomizers</a></li>
+                            </ul>
+                        </div>
+                        <div class="mobile-submenu-section">
+                            <h4>Smoking Accessories</h4>
+                            <ul class="mobile-submenu-list">
+                                <li><a href="products.html?category=glass-pipes" class="mobile-submenu-link">Glass Pipes</a></li>
+                                <li><a href="products.html?category=bongs" class="mobile-submenu-link">Water Pipes/Bongs</a></li>
+                                <li><a href="products.html?category=hand-pipes" class="mobile-submenu-link">Hand Pipes</a></li>
+                                <li><a href="products.html?category=grinders" class="mobile-submenu-link">Grinders</a></li>
+                                <li><a href="products.html?category=cleaning" class="mobile-submenu-link">Cleaning Supplies</a></li>
+                                <li><a href="products.html?category=storage" class="mobile-submenu-link">Storage</a></li>
+                            </ul>
+                        </div>
+                        <div class="mobile-submenu-section">
+                            <h4>Specialty</h4>
+                            <ul class="mobile-submenu-list">
+                                <li><a href="products.html?category=kratom" class="mobile-submenu-link">Kratom</a></li>
+                                <li><a href="products.html?category=detox" class="mobile-submenu-link">Detox Products</a></li>
+                                <li><a href="products.html?category=cbd" class="mobile-submenu-link">CBD Products</a></li>
+                                <li><a href="products.html?category=accessories" class="mobile-submenu-link">Accessories</a></li>
+                            </ul>
+                        </div>
+                        <div class="mobile-submenu-section">
+                            <h4>Shop By</h4>
+                            <ul class="mobile-submenu-list">
+                                <li><a href="products.html?filter=new" class="mobile-submenu-link">New Arrivals</a></li>
+                                <li><a href="products.html?filter=bestsellers" class="mobile-submenu-link">Best Sellers</a></li>
+                                <li><a href="products.html?filter=clearance" class="mobile-submenu-link">Clearance</a></li>
+                                <li><a href="products.html?filter=brands" class="mobile-submenu-link">All Brands</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="products.html?filter=deals" class="mobile-nav-link">Deals</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#locations" class="mobile-nav-link">Locations</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="about.html" class="mobile-nav-link">About</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="about.html#contact" class="mobile-nav-link">Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="mobile-utility">
+        <div class="mobile-utility-links">
+            <a href="cart.html" class="mobile-utility-link">
+                <span class="mobile-utility-icon" aria-hidden="true">🛒</span>
+                <span>Shopping Cart</span>
+                <span class="cart-badge" style="display: none;">0</span>
+            </a>
+            <a href="about.html#contact" class="mobile-utility-link">
+                <span class="mobile-utility-icon" aria-hidden="true">👤</span>
+                <span>My Account</span>
+            </a>
+            <a href="tel:+15095551234" class="mobile-utility-link">
+                <span class="mobile-utility-icon" aria-hidden="true">📞</span>
+                <span>(509) 555-1234</span>
+            </a>
+        </div>
+    </div>
+</aside>
+
+<!-- Search Overlay -->
+<div class="search-overlay">
+    <div class="search-container">
+        <button class="search-close" aria-label="Close search">&times;</button>
+        <form class="search-form" role="search">
+            <input
+                type="search"
+                class="search-input"
+                placeholder="Search for products..."
+                aria-label="Search products"
+                autocomplete="off"
+            >
+            <button type="submit" class="search-submit">Search</button>
+        </form>
+        <div class="search-suggestions">
+            <div class="search-section">
+                <h3>Popular Searches</h3>
+                <div class="search-tags">
+                    <a href="products.html?search=disposable+vape" class="search-tag">Disposable Vape</a>
+                    <a href="products.html?search=kratom" class="search-tag">Kratom</a>
+                    <a href="products.html?search=glass+pipe" class="search-tag">Glass Pipe</a>
+                    <a href="products.html?search=e-liquid" class="search-tag">E-Liquid</a>
+                    <a href="products.html?search=detox" class="search-tag">Detox</a>
+                    <a href="products.html?search=bong" class="search-tag">Bong</a>
+                    <a href="products.html?search=grinder" class="search-tag">Grinder</a>
+                    <a href="products.html?search=cbd" class="search-tag">CBD</a>
+                </div>
+            </div>
+            <div class="search-section">
+                <h3>Browse Categories</h3>
+                <div class="search-categories">
+                    <a href="products.html?category=vapes" class="search-category">Vapes</a>
+                    <a href="products.html?category=glass" class="search-category">Glass</a>
+                    <a href="products.html?category=kratom" class="search-category">Kratom</a>
+                    <a href="products.html?category=detox" class="search-category">Detox</a>
+                    <a href="products.html?category=accessories" class="search-category">Accessories</a>
+                    <a href="products.html?category=deals" class="search-category">Deals</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="mobile-bottom-nav" aria-label="Mobile bottom navigation">
+    <a href="index.html" class="bottom-nav-item">
+        <span class="bottom-nav-icon" aria-hidden="true">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="#" class="bottom-nav-item" onclick="document.getElementById('searchOpen').click(); return false;">
+        <span class="bottom-nav-icon" aria-hidden="true">🔍</span>
+        <span>Search</span>
+    </a>
+    <a href="cart.html" class="bottom-nav-item">
+        <span class="bottom-nav-icon" aria-hidden="true">🛒</span>
+        <span>Cart</span>
+        <span class="cart-badge" style="display: none;">0</span>
+    </a>
+    <a href="about.html#contact" class="bottom-nav-item">
+        <span class="bottom-nav-icon" aria-hidden="true">👤</span>
+        <span>Account</span>
+    </a>
+</nav>
     </header>
 
     <!-- Page Header -->
@@ -199,6 +479,7 @@
 
     <script src="js/products-data.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/navigation.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
