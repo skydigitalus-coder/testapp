@@ -26,12 +26,6 @@ const SHOPIFY_CONFIG = {
             address: '960 George Washington Way, Richland, WA',
             phone: '(509) 396-9700'
         },
-        umatilla: {
-            id: 'gid://shopify/Location/UMATILLA_LOCATION_ID',
-            name: 'Umatilla, OR',
-            address: 'Umatilla, Oregon',
-            phone: '(509) 396-9700'
-        },
         pendleton: {
             id: 'gid://shopify/Location/80352247860',
             name: 'Pendleton, OR',
