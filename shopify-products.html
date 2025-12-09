@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop our products - Powered by Shopify">
+    <title>Shop Products - Pandora's Box</title>
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <style>
+        .bopis-selector {
+            background: var(--color-accent-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-8);
+            border: 2px solid var(--color-accent);
+        }
+
+        .bopis-selector h3 {
+            color: var(--color-accent);
+            margin-bottom: var(--space-4);
+        }
+
+        .location-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .location-option {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-base);
+            border: 2px solid var(--color-neutral-200);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .location-option:hover {
+            border-color: var(--color-accent);
+        }
+
+        .location-option.selected {
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+        }
+
+        .location-option input[type="radio"] {
+            margin-right: var(--space-2);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-base);
+            transition: all var(--transition-base);
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: var(--space-4);
+        }
+
+        .product-title {
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-2);
+            color: var(--color-text-primary);
+        }
+
+        .product-price {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .product-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: var(--space-12);
+        }
+
+        .spinner {
+            border: 4px solid var(--color-neutral-200);
+            border-top: 4px solid var(--color-primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- Shopify Buy Button SDK -->
+    <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+</head>
+<body>
+    <!-- Age Verification Modal -->
+    <div id="ageModal" class="modal">
+        <div class="modal-content">
+            <h2>Age Verification</h2>
+            <p>You must be 21 years or older to enter this site.</p>
+            <p>Are you at least 21 years old?</p>
+            <div class="modal-buttons">
+                <button id="ageYes" class="btn btn-primary">Yes, I'm 21+</button>
+                <button id="ageNo" class="btn btn-secondary">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 style="margin-top: 2rem; color: var(--color-primary);">Shop Our Products</h1>
+        <p style="margin-bottom: 2rem;">Powered by Shopify - Real inventory, real checkout</p>
+
+        <!-- BOPIS Location Selector -->
+        <div class="bopis-selector">
+            <h3>🚀 Select Your Pickup Location</h3>
+            <p style="margin-bottom: var(--space-4);">Choose which store you'd like to pick up your order from:</p>
+
+            <div class="location-options">
+                <label class="location-option" data-location="kennewick">
+                    <input type="radio" name="pickup-location" value="kennewick">
+                    <strong>Kennewick, WA</strong><br>
+                    <small>5300 W. Clearwater Ave</small>
+                </label>
+
+                <label class="location-option" data-location="richland">
+                    <input type="radio" name="pickup-location" value="richland">
+                    <strong>Richland, WA</strong><br>
+                    <small>960 George Washington Way</small>
+                </label>
+
+                <label class="location-option" data-location="umatilla">
+                    <input type="radio" name="pickup-location" value="umatilla">
+                    <strong>Umatilla, OR</strong><br>
+                    <small>Umatilla, Oregon</small>
+                </label>
+
+                <label class="location-option" data-location="pendleton">
+                    <input type="radio" name="pickup-location" value="pendleton">
+                    <strong>Pendleton, OR</strong><br>
+                    <small>Pendleton, Oregon</small>
+                </label>
+            </div>
+
+            <div id="location-selected-message" style="margin-top: var(--space-4); display: none; color: var(--color-accent); font-weight: bold;">
+                ✓ You'll pick up at: <span id="selected-location-name"></span>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading products from Shopify...</p>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="products-container" class="product-grid" style="display: none;">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" style="display: none; text-align: center; padding: var(--space-12);">
+            <h3>No products found</h3>
+            <p>Please check your Shopify configuration in <code>config/shopify.js</code></p>
+            <p><a href="SHOPIFY_SETUP.md">View Setup Guide</a></p>
+        </div>
+    </div>
+
+    <!-- Load Configuration and Client -->
+    <script src="config/shopify.js"></script>
+    <script src="js/shopify-client.js"></script>
+
+    <script>
+        // Wait for Shopify SDK to load
+        function initializeShopify() {
+            if (typeof ShopifyBuy === 'undefined') {
+                console.log('Waiting for Shopify SDK...');
+                setTimeout(initializeShopify, 100);
+                return;
+            }
+
+            console.log('Shopify SDK loaded, initializing client...');
+
+            // Initialize Shopify client
+            if (typeof shopifyClient === 'undefined') {
+                window.shopifyClient = new ShopifyClient();
+            }
+
+            // Load products
+            loadProducts();
+
+            // Set up location selector
+            setupLocationSelector();
+
+            // Load saved location
+            loadSavedLocation();
+        }
+
+        // Load products from Shopify
+        async function loadProducts() {
+            const loading = document.getElementById('loading');
+            const container = document.getElementById('products-container');
+            const emptyState = document.getElementById('empty-state');
+
+            try {
+                loading.style.display = 'block';
+
+                // Fetch products from Shopify
+                const products = await shopifyClient.fetchAllProducts();
+
+                loading.style.display = 'none';
+
+                if (products && products.length > 0) {
+                    container.style.display = 'grid';
+                    renderProducts(products);
+                } else {
+                    emptyState.style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error('Error loading products:', error);
+                loading.style.display = 'none';
+                emptyState.style.display = 'block';
+            }
+        }
+
+        // Render products in the grid
+        function renderProducts(products) {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const card = createProductCard(product);
+                container.appendChild(card);
+            });
+        }
+
+        // Create product card element
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+
+            const price = product.comparePrice
+                ? `<span style="text-decoration: line-through; color: var(--color-text-secondary); margin-right: var(--space-2);">$${product.comparePrice.toFixed(2)}</span>$${product.price.toFixed(2)}`
+                : `$${product.price.toFixed(2)}`;
+
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-price">${price}</div>
+                    <p class="product-description">${product.description || 'No description available'}</p>
+                    ${product.stock === 'in-stock'
+                        ? `<button class="btn btn-primary btn-full" onclick="addToCart('${product.variantId}', '${product.name}')">Add to Cart</button>`
+                        : `<button class="btn btn-outline btn-full" disabled>Out of Stock</button>`
+                    }
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Add to cart function
+        async function addToCart(variantId, productName) {
+            try {
+                await shopifyClient.addToCart(variantId, 1);
+
+                // Show success message
+                alert(`✓ ${productName} added to cart!`);
+
+                // Update cart count
+                updateCartCount();
+
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                alert('Error adding to cart. Please try again.');
+            }
+        }
+
+        // Update cart count in navigation
+        async function updateCartCount() {
+            const count = await shopifyClient.getCartCount();
+            const badges = document.querySelectorAll('.cart-badge');
+            badges.forEach(badge => {
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'inline-block' : 'none';
+            });
+        }
+
+        // Set up location selector
+        function setupLocationSelector() {
+            const options = document.querySelectorAll('.location-option');
+            const message = document.getElementById('location-selected-message');
+            const locationName = document.getElementById('selected-location-name');
+
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all
+                    options.forEach(opt => opt.classList.remove('selected'));
+
+                    // Add selected class to clicked
+                    this.classList.add('selected');
+
+                    // Set location in Shopify client
+                    const locationKey = this.dataset.location;
+                    const location = shopifyClient.setPickupLocation(locationKey);
+
+                    // Show confirmation message
+                    if (location) {
+                        locationName.textContent = location.name;
+                        message.style.display = 'block';
+                    }
+                });
+            });
+        }
+
+        // Load previously saved location
+        function loadSavedLocation() {
+            const savedLocation = localStorage.getItem('selectedPickupLocation');
+            if (savedLocation) {
+                const option = document.querySelector(`[data-location="${savedLocation}"]`);
+                if (option) {
+                    option.click();
+                }
+            }
+        }
+
+        // Listen for cart updates
+        window.addEventListener('shopifyCartUpdated', updateCartCount);
+
+        // Initialize on page load
+        initializeShopify();
+
+        // Update cart count on load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+
+    <!-- Age verification -->
+    <script src="js/main.js"></script>
+</body>
+</html>

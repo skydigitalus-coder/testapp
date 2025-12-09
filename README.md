@@ -1,8 +1,24 @@
-# VapeHub - Mobile-First Vape & Novelty Store
+# Pandora's Box - "The Glass That Kicks Ass"
 
-A fully responsive, mobile-first retail website for a vape and novelty store built with vanilla HTML, CSS, and JavaScript.
+A fully responsive e-commerce website for a family-owned vape and smoke shop with Shopify integration and Buy Online, Pick Up In Store (BOPIS) functionality.
+
+## 🚀 Quick Start with Shopify
+
+**New!** Full Shopify integration for real e-commerce functionality.
+
+1. **Set up Shopify** - See [SHOPIFY_QUICKSTART.md](SHOPIFY_QUICKSTART.md) (5 minutes)
+2. **Configure your store** - Update `config/shopify.js` with your credentials
+3. **You're live!** - Products, cart, and checkout all work with Shopify
 
 ## Features
+
+### 🛒 E-Commerce (Shopify Powered)
+- Real product inventory from your Shopify store
+- Secure checkout through Shopify
+- Buy Online, Pick Up In Store (BOPIS) at 4 locations
+- Multi-location inventory management
+- Local pickup with location selector
+- Real-time product availability
 
 ### 🔒 Age Verification
 - Required age gate (21+) on first visit
@@ -74,25 +90,50 @@ A fully responsive, mobile-first retail website for a vape and novelty store bui
 - **HTML5** - Semantic markup
 - **CSS3** - Custom responsive design with CSS Grid and Flexbox
 - **JavaScript (ES6+)** - Vanilla JS, no frameworks
-- **LocalStorage** - For cart persistence and age verification
+- **Shopify** - E-commerce backend, checkout, and payments
+- **Shopify Buy SDK** - Product and cart integration
+- **LocalStorage** - For age verification and location preference
 
 ## Project Structure
 
 ```
 /
-├── index.html          # Homepage
-├── products.html       # Product catalog
-├── cart.html          # Shopping cart
-├── about.html         # About & contact
+├── index.html                  # Homepage
+├── products.html               # Product catalog
+├── shopify-products.html       # Shopify integration example ⭐
+├── cart.html                   # Shopping cart
+├── about.html                  # About page
+├── locations.html              # Store locations (BOPIS) ⭐
+├── contact.html                # Contact form ⭐
+├── terms.html                  # Terms of Service ⭐
+├── privacy.html                # Privacy Policy ⭐
+├── shipping.html               # Shipping & BOPIS Policy ⭐
+│
+├── config/
+│   └── shopify.js              # Shopify configuration ⭐
+│
 ├── css/
-│   └── styles.css     # All styles (mobile-first)
+│   ├── design-system.css       # Design tokens ⭐
+│   ├── styles.css              # Base styles
+│   ├── navigation.css          # Mega-menu navigation ⭐
+│   └── catalog.css             # Product catalog
+│
 ├── js/
-│   ├── main.js        # Core functionality
-│   ├── cart.js        # Cart management
-│   ├── products.js    # Product filtering/sorting
-│   ├── cart-page.js   # Cart page logic
-│   └── products-data.js # Product database
-└── images/            # Image assets
+│   ├── shopify-client.js       # Shopify API client ⭐
+│   ├── main.js                 # Core functionality
+│   ├── cart.js                 # Cart management
+│   ├── navigation.js           # Navigation logic ⭐
+│   ├── products.js             # Product filtering/sorting
+│   └── products-data.js        # Static product data (fallback)
+│
+├── images/
+│   ├── logo.svg                # Brand logo ⭐
+│   └── logo-icon.svg           # Icon logo ⭐
+│
+├── SHOPIFY_QUICKSTART.md       # 5-minute setup guide ⭐
+└── SHOPIFY_SETUP.md            # Full setup documentation ⭐
+
+⭐ = New/Updated for Shopify integration
 ```
 
 ## Key Features Implementation
