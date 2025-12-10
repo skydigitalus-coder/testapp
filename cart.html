@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
     <!-- Age Verification Modal -->
@@ -330,13 +331,35 @@
     <section class="page-header">
         <div class="container">
             <h1>Shopping Cart</h1>
-            <p>Review your items</p>
+            <p>Review your items and proceed to checkout</p>
         </div>
     </section>
 
+    <!-- Progress Indicator -->
+    <div class="container">
+        <div class="progress-indicator">
+            <div class="progress-step active">
+                <span class="progress-step-number">1</span>
+                <span>Cart</span>
+            </div>
+            <div class="progress-step">
+                <span class="progress-step-number">2</span>
+                <span>Information</span>
+            </div>
+            <div class="progress-step">
+                <span class="progress-step-number">3</span>
+                <span>Payment</span>
+            </div>
+            <div class="progress-step">
+                <span class="progress-step-number">4</span>
+                <span>Complete</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Cart Section -->
     <section class="cart-section">
-        <div class="container">
+        <div class="cart-page-container">
             <div id="cartContent">
                 <!-- Cart will be loaded by JavaScript -->
             </div>
