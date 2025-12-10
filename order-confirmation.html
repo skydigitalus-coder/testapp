@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order confirmation - Pandora's Box">
+    <title>Order Confirmation - Pandora's Box</title>
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <style>
+        .confirmation-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .confirmation-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .confirmation-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .confirmation-header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .confirmation-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .order-number {
+            background: white;
+            color: #1f2937;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .confirmation-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .confirmation-section h2 {
+            font-size: 1.5rem;
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .info-block h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            color: #6b7280;
+        }
+
+        .info-block p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .order-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #f3f4f6;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-details h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .order-item-details p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .order-item-price {
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .order-summary-table {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .summary-row.total {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding-top: 1rem;
+            border-top: 2px solid #e5e7eb;
+            margin-top: 0.5rem;
+        }
+
+        .summary-row.discount {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .next-steps {
+            background: #eff6ff;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .next-steps h3 {
+            margin: 0 0 1rem 0;
+            color: #1e40af;
+        }
+
+        .next-steps ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            color: #1e40af;
+        }
+
+        .next-steps li {
+            margin-bottom: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-support {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .contact-support h3 {
+            margin: 0 0 0.5rem 0;
+        }
+
+        .contact-support p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .confirmation-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .order-number {
+                font-size: 1rem;
+                padding: 0.75rem 1.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Simple Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="header-main">
+                <a href="index.html" class="header-logo">
+                    <h1>Pandora's Box</h1>
+                    <span class="tagline">The Glass That Kicks Ass</span>
+                </a>
+                <div class="nav-utility">
+                    <a href="tel:+15095551234" class="utility-phone">
+                        <span aria-hidden="true">📞</span>
+                        <span>(509) 555-1234</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Confirmation Container -->
+    <div class="confirmation-container">
+        <!-- Success Header -->
+        <div class="confirmation-header">
+            <div class="confirmation-icon">✓</div>
+            <h1>Thank You for Your Order!</h1>
+            <p>Your order has been successfully placed and is being processed.</p>
+            <div class="order-number">
+                Order #<span id="orderNumberDisplay">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <h3>What Happens Next?</h3>
+            <ul>
+                <li>You'll receive an email confirmation at <strong id="customerEmail"></strong></li>
+                <li>Your order will be processed and shipped within 1-2 business days</li>
+                <li>You'll receive a tracking number once your order ships</li>
+                <li>Estimated delivery: <strong id="estimatedDelivery"></strong></li>
+            </ul>
+        </div>
+
+        <!-- Order Details -->
+        <div class="confirmation-section">
+            <h2>Order Details</h2>
+            <div id="orderItemsList">
+                <!-- Order items will be rendered here -->
+            </div>
+
+            <div class="order-summary-table">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="orderSubtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="orderShipping">$0.00</span>
+                </div>
+                <div class="summary-row discount" id="orderDiscountRow" style="display: none;">
+                    <span>Discount:</span>
+                    <span id="orderDiscount">-$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax:</span>
+                    <span id="orderTax">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="orderTotal">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping & Payment Info -->
+        <div class="confirmation-section">
+            <h2>Shipping & Payment Information</h2>
+            <div class="info-grid">
+                <div class="info-block">
+                    <h3>Shipping Address</h3>
+                    <p id="shippingAddress">Loading...</p>
+                </div>
+                <div class="info-block">
+                    <h3>Shipping Method</h3>
+                    <p id="shippingMethod">Loading...</p>
+                </div>
+                <div class="info-block">
+                    <h3>Payment Method</h3>
+                    <p id="paymentMethod">Loading...</p>
+                </div>
+                <div class="info-block">
+                    <h3>Contact Information</h3>
+                    <p id="contactInfo">Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="products.html" class="btn btn-primary btn-lg">Continue Shopping</a>
+            <button onclick="window.print()" class="btn btn-secondary btn-lg">Print Order</button>
+        </div>
+
+        <!-- Support Section -->
+        <div class="contact-support">
+            <h3>Need Help?</h3>
+            <p>Contact our customer service team</p>
+            <p><strong>Phone:</strong> (509) 555-1234 | <strong>Email:</strong> support@pandorasbox.com</p>
+        </div>
+
+        <!-- Account Creation Prompt (if guest checkout) -->
+        <div id="accountPrompt" class="confirmation-section" style="display: none;">
+            <h2>Create an Account</h2>
+            <p>Save your information for faster checkout next time!</p>
+            <button class="btn btn-primary" onclick="createAccount()">Create Account</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pandora's Box. All rights reserved. Must be 21+ to purchase.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrderConfirmation();
+        });
+
+        function loadOrderConfirmation() {
+            // Get order from localStorage
+            const orderData = localStorage.getItem('lastOrder');
+
+            if (!orderData) {
+                // No order found, redirect to home
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const order = JSON.parse(orderData);
+
+            // Display order number
+            document.getElementById('orderNumberDisplay').textContent = order.orderNumber;
+
+            // Display customer email
+            document.getElementById('customerEmail').textContent = order.customer.email;
+
+            // Calculate estimated delivery
+            const deliveryDate = calculateDeliveryDate(order.shippingMethod);
+            document.getElementById('estimatedDelivery').textContent = deliveryDate;
+
+            // Render order items
+            renderOrderItems(order.items);
+
+            // Display order totals
+            document.getElementById('orderSubtotal').textContent = `$${order.subtotal.toFixed(2)}`;
+            document.getElementById('orderShipping').textContent = order.shipping === 0 ? 'FREE' : `$${order.shipping.toFixed(2)}`;
+            document.getElementById('orderTax').textContent = `$${order.tax.toFixed(2)}`;
+            document.getElementById('orderTotal').textContent = `$${order.total.toFixed(2)}`;
+
+            if (order.discount > 0) {
+                document.getElementById('orderDiscountRow').style.display = 'flex';
+                document.getElementById('orderDiscount').textContent = `-$${order.discount.toFixed(2)}`;
+            }
+
+            // Display shipping address
+            const shipping = order.shipping;
+            document.getElementById('shippingAddress').innerHTML = `
+                <strong>${shipping.firstName} ${shipping.lastName}</strong><br>
+                ${shipping.address}${shipping.apartment ? ', ' + shipping.apartment : ''}<br>
+                ${shipping.city}, ${shipping.state} ${shipping.zipCode}
+            `;
+
+            // Display shipping method
+            const methodNames = {
+                'standard': 'Standard Shipping (3-5 business days)',
+                'expedited': 'Expedited Shipping (2-3 business days)',
+                'next-day': 'Next Day Delivery (1 business day)',
+                'local-pickup': 'Local Pickup (In-store)'
+            };
+            document.getElementById('shippingMethod').textContent = methodNames[order.shippingMethod] || order.shippingMethod;
+
+            // Display payment method
+            let paymentText = 'Credit/Debit Card';
+            if (order.paymentMethod === 'paypal') {
+                paymentText = 'PayPal';
+            } else if (order.paymentMethod === 'applepay') {
+                paymentText = 'Apple Pay';
+            }
+            document.getElementById('paymentMethod').textContent = paymentText;
+
+            // Display contact info
+            document.getElementById('contactInfo').innerHTML = `
+                ${order.customer.email}<br>
+                ${shipping.phone}
+            `;
+
+            // Show account creation prompt if guest checkout
+            if (!order.customer.createAccount) {
+                document.getElementById('accountPrompt').style.display = 'block';
+            }
+        }
+
+        function renderOrderItems(items) {
+            const container = document.getElementById('orderItemsList');
+
+            container.innerHTML = items.map(item => `
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="order-item-details">
+                        <h4>${item.name}</h4>
+                        <p>Quantity: ${item.quantity}</p>
+                        ${Object.keys(item.variants || {}).length > 0 ? `
+                            <p>${Object.entries(item.variants).map(([k, v]) => `${k}: ${v}`).join(', ')}</p>
+                        ` : ''}
+                    </div>
+                    <div class="order-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+        }
+
+        function calculateDeliveryDate(shippingMethod) {
+            const today = new Date();
+            let daysToAdd;
+
+            switch(shippingMethod) {
+                case 'standard':
+                    daysToAdd = 5;
+                    break;
+                case 'expedited':
+                    daysToAdd = 3;
+                    break;
+                case 'next-day':
+                    daysToAdd = 1;
+                    break;
+                case 'local-pickup':
+                    return 'Available today at our store';
+                default:
+                    daysToAdd = 5;
+            }
+
+            const deliveryDate = new Date(today);
+            deliveryDate.setDate(today.getDate() + daysToAdd);
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return deliveryDate.toLocaleDateString('en-US', options);
+        }
+
+        function createAccount() {
+            alert('Account creation feature coming soon! You\'ll be able to save your information for faster checkout.');
+        }
+    </script>
+</body>
+</html>
