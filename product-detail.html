@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product Details - Pandora's Box">
+    <title>Product Details - Pandora's Box</title>
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <style>
+        /* Product Detail Page Styles */
+        .product-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-8) var(--space-4);
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .breadcrumb a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+            margin-bottom: var(--space-16);
+        }
+
+        /* Image Gallery */
+        .product-gallery {
+            position: sticky;
+            top: var(--space-8);
+            height: fit-content;
+        }
+
+        .main-image-container {
+            position: relative;
+            background: var(--color-neutral-100);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: var(--space-4);
+            cursor: zoom-in;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .zoom-icon {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: var(--space-2);
+            border-radius: var(--radius-base);
+            font-size: 1.5rem;
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: var(--space-2);
+        }
+
+        .thumbnail {
+            border: 2px solid transparent;
+            border-radius: var(--radius-base);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--color-primary);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Product Info */
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .product-brand {
+            color: var(--color-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        .product-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            color: var(--color-text-primary);
+            margin: 0;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 1.25rem;
+        }
+
+        .review-count {
+            color: var(--color-text-secondary);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-3);
+        }
+
+        .price-current {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .price-original {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            color: var(--color-text-secondary);
+        }
+
+        .price-savings {
+            background: var(--color-accent);
+            color: white;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .stock-badge {
+            display: inline-block;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .stock-badge.in-stock {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .stock-badge.low-stock {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .stock-badge.out-of-stock {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .product-description {
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+        }
+
+        /* Variant Selector */
+        .variant-selector {
+            border-top: 1px solid var(--color-neutral-200);
+            border-bottom: 1px solid var(--color-neutral-200);
+            padding: var(--space-6) 0;
+        }
+
+        .variant-group {
+            margin-bottom: var(--space-4);
+        }
+
+        .variant-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .variant-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+        }
+
+        .variant-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .variant-option {
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--color-neutral-300);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            background: white;
+        }
+
+        .variant-option:hover {
+            border-color: var(--color-primary);
+        }
+
+        .variant-option.selected {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+
+        .variant-option.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .quantity-label {
+            font-weight: 600;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--color-neutral-300);
+            border-radius: var(--radius-base);
+        }
+
+        .quantity-btn {
+            padding: var(--space-3) var(--space-4);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--color-primary);
+        }
+
+        .quantity-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid var(--color-neutral-300);
+            border-right: 1px solid var(--color-neutral-300);
+            padding: var(--space-3);
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .product-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: var(--space-4) var(--space-6);
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .btn-add-cart:hover:not(:disabled) {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-add-cart:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary-actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        .btn-secondary {
+            flex: 1;
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--color-neutral-300);
+            background: white;
+            border-radius: var(--radius-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-4);
+            padding: var(--space-6);
+            background: var(--color-neutral-50);
+            border-radius: var(--radius-lg);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+        }
+
+        .trust-badge-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: var(--color-accent-light);
+            border-left: 4px solid var(--color-accent);
+            padding: var(--space-4);
+            border-radius: var(--radius-base);
+        }
+
+        .social-proof-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-2);
+        }
+
+        .social-proof-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Tabs Section */
+        .product-tabs {
+            margin: var(--space-12) 0;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: var(--space-2);
+            border-bottom: 2px solid var(--color-neutral-200);
+            margin-bottom: var(--space-8);
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            padding: var(--space-4) var(--space-6);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all var(--transition-base);
+        }
+
+        .tab-button:hover {
+            color: var(--color-primary);
+        }
+
+        .tab-button.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Reviews */
+        .review-summary {
+            background: var(--color-neutral-50);
+            padding: var(--space-8);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-8);
+        }
+
+        .review-summary-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-8);
+            margin-bottom: var(--space-6);
+        }
+
+        .review-average {
+            text-align: center;
+        }
+
+        .review-average-score {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .review-average-stars {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            margin: var(--space-2) 0;
+        }
+
+        .review-breakdown {
+            flex: 1;
+        }
+
+        .review-bar {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-2);
+        }
+
+        .review-bar-label {
+            min-width: 80px;
+            font-size: 0.875rem;
+        }
+
+        .review-bar-track {
+            flex: 1;
+            height: 8px;
+            background: var(--color-neutral-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .review-bar-fill {
+            height: 100%;
+            background: #fbbf24;
+            transition: width var(--transition-base);
+        }
+
+        .review-bar-count {
+            min-width: 40px;
+            text-align: right;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .review-card {
+            border: 1px solid var(--color-neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--space-4);
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--color-primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .verified-badge {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-base);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .review-helpful {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--color-neutral-200);
+        }
+
+        /* Recommendations */
+        .recommendations {
+            margin: var(--space-12) 0;
+        }
+
+        .recommendations h2 {
+            margin-bottom: var(--space-6);
+        }
+
+        .product-grid-small {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .product-card-small {
+            border: 1px solid var(--color-neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .product-card-small:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .product-card-small img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-3);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: white;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Sticky Mobile Cart */
+        .sticky-mobile-cart {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: var(--space-4);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .product-main {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .product-gallery {
+                position: static;
+            }
+
+            .product-price {
+                flex-wrap: wrap;
+            }
+
+            .price-current {
+                font-size: 2rem;
+            }
+
+            .sticky-mobile-cart {
+                display: flex;
+                gap: var(--space-3);
+                align-items: center;
+            }
+
+            .sticky-mobile-cart .price-current {
+                font-size: 1.5rem;
+            }
+
+            .sticky-mobile-cart .btn-add-cart {
+                flex: 1;
+            }
+
+            .tab-nav {
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .review-summary-header {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .product-grid-small {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
+            }
+        }
+
+        /* Loading State */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            border: 4px solid var(--color-neutral-200);
+            border-top: 4px solid var(--color-primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- Shopify Buy Button SDK -->
+    <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-image" class="lightbox-content" src="" alt="">
+    </div>
+
+    <div class="product-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="products.html">Products</a>
+            <span>/</span>
+            <span id="breadcrumb-category">Category</span>
+            <span>/</span>
+            <span id="breadcrumb-product">Product</span>
+        </nav>
+
+        <!-- Main Product Section -->
+        <div class="product-main">
+            <!-- Image Gallery -->
+            <div class="product-gallery">
+                <div class="main-image-container" onclick="openLightbox()">
+                    <img id="main-image" class="main-image" src="https://via.placeholder.com/600" alt="Product">
+                    <span class="zoom-icon">🔍</span>
+                </div>
+                <div id="thumbnail-gallery" class="thumbnail-gallery">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <div id="product-brand" class="product-brand">Loading...</div>
+                <h1 id="product-title" class="product-title">Loading Product...</h1>
+
+                <div class="product-rating">
+                    <div class="stars" id="product-stars">★★★★★</div>
+                    <a href="#reviews" class="review-count" id="review-count">0 reviews</a>
+                </div>
+
+                <div class="product-price">
+                    <span id="price-current" class="price-current">$0.00</span>
+                    <span id="price-original" class="price-original" style="display: none;">$0.00</span>
+                    <span id="price-savings" class="price-savings" style="display: none;">Save 0%</span>
+                </div>
+
+                <div id="stock-status" class="stock-badge in-stock">In Stock</div>
+
+                <div id="product-description" class="product-description">
+                    Loading product details...
+                </div>
+
+                <!-- Variant Selector -->
+                <div id="variant-selector" class="variant-selector" style="display: none;">
+                    <!-- Variants will be inserted here -->
+                </div>
+
+                <!-- Quantity Selector -->
+                <div class="quantity-selector">
+                    <span class="quantity-label">Quantity:</span>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="decrementQuantity()">−</button>
+                        <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="99">
+                        <button class="quantity-btn" onclick="incrementQuantity()">+</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="product-actions">
+                    <button id="add-to-cart-btn" class="btn-add-cart" onclick="addToCart()">
+                        Add to Cart
+                    </button>
+                    <div class="btn-secondary-actions">
+                        <button class="btn-secondary" onclick="addToWishlist()">
+                            ❤️ Add to Wishlist
+                        </button>
+                        <button class="btn-secondary" onclick="shareProduct()">
+                            🔗 Share
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <span class="trust-badge-icon">✓</span>
+                        <div>
+                            <strong>Authentic</strong><br>
+                            <small>Guaranteed</small>
+                        </div>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-badge-icon">🚚</span>
+                        <div>
+                            <strong>Free Shipping</strong><br>
+                            <small>Over $75</small>
+                        </div>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-badge-icon">↩️</span>
+                        <div>
+                            <strong>30-Day</strong><br>
+                            <small>Returns</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Proof -->
+                <div id="social-proof" class="social-proof">
+                    <div class="social-proof-item">
+                        <span>👀</span> <strong id="viewers-count">12</strong> people viewing this right now
+                    </div>
+                    <div class="social-proof-item">
+                        <span>🔥</span> <strong id="purchased-count">23</strong> purchased in last 24 hours
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabbed Content -->
+        <div class="product-tabs">
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="switchTab('description')">Description</button>
+                <button class="tab-button" onclick="switchTab('specifications')">Specifications</button>
+                <button class="tab-button" onclick="switchTab('shipping')">Shipping & Returns</button>
+                <button class="tab-button" onclick="switchTab('reviews')">Reviews</button>
+            </div>
+
+            <div id="tab-description" class="tab-content active">
+                <h2>Product Description</h2>
+                <div id="full-description">
+                    <p>Loading detailed description...</p>
+                </div>
+            </div>
+
+            <div id="tab-specifications" class="tab-content">
+                <h2>Specifications</h2>
+                <div id="specifications">
+                    <p>Loading specifications...</p>
+                </div>
+            </div>
+
+            <div id="tab-shipping" class="tab-content">
+                <h2>Shipping & Returns</h2>
+                <h3>Shipping Information</h3>
+                <ul>
+                    <li><strong>Standard Shipping:</strong> 3-5 business days</li>
+                    <li><strong>Express Shipping:</strong> 1-2 business days</li>
+                    <li><strong>Free Shipping:</strong> Orders over $75</li>
+                    <li><strong>Local Pickup:</strong> Available at all our locations</li>
+                </ul>
+                <h3>Return Policy</h3>
+                <p>We accept returns within 30 days of purchase. Items must be unused and in original packaging.</p>
+                <h3>Warranty</h3>
+                <p>All products come with manufacturer warranty. Contact us for warranty claims.</p>
+            </div>
+
+            <div id="tab-reviews" class="tab-content">
+                <div class="review-summary">
+                    <div class="review-summary-header">
+                        <div class="review-average">
+                            <div class="review-average-score">4.8</div>
+                            <div class="review-average-stars">★★★★★</div>
+                            <div>Based on 127 reviews</div>
+                        </div>
+                        <div class="review-breakdown">
+                            <div class="review-bar">
+                                <span class="review-bar-label">5 stars</span>
+                                <div class="review-bar-track">
+                                    <div class="review-bar-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="review-bar-count">108</span>
+                            </div>
+                            <div class="review-bar">
+                                <span class="review-bar-label">4 stars</span>
+                                <div class="review-bar-track">
+                                    <div class="review-bar-fill" style="width: 10%"></div>
+                                </div>
+                                <span class="review-bar-count">13</span>
+                            </div>
+                            <div class="review-bar">
+                                <span class="review-bar-label">3 stars</span>
+                                <div class="review-bar-track">
+                                    <div class="review-bar-fill" style="width: 3%"></div>
+                                </div>
+                                <span class="review-bar-count">4</span>
+                            </div>
+                            <div class="review-bar">
+                                <span class="review-bar-label">2 stars</span>
+                                <div class="review-bar-track">
+                                    <div class="review-bar-fill" style="width: 1%"></div>
+                                </div>
+                                <span class="review-bar-count">1</span>
+                            </div>
+                            <div class="review-bar">
+                                <span class="review-bar-label">1 star</span>
+                                <div class="review-bar-track">
+                                    <div class="review-bar-fill" style="width: 1%"></div>
+                                </div>
+                                <span class="review-bar-count">1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Write a Review</button>
+                </div>
+
+                <div class="review-list">
+                    <!-- Sample Reviews -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-author">
+                                <div class="review-avatar">JD</div>
+                                <div>
+                                    <strong>John Doe</strong>
+                                    <span class="verified-badge">✓ Verified Purchase</span>
+                                    <div class="stars">★★★★★</div>
+                                    <small style="color: var(--color-text-secondary);">2 weeks ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Amazing product! Exactly as described. Fast shipping and great quality. Highly recommend!</p>
+                        <div class="review-helpful">
+                            <small>Was this helpful?</small>
+                            <button class="btn-secondary">👍 Yes (12)</button>
+                            <button class="btn-secondary">👎 No (0)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <section class="recommendations">
+            <h2>You May Also Like</h2>
+            <div id="recommendations-grid" class="product-grid-small">
+                <!-- Recommendations will be loaded here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Sticky Mobile Cart -->
+    <div class="sticky-mobile-cart">
+        <div>
+            <div class="price-current" id="mobile-price">$0.00</div>
+        </div>
+        <button class="btn-add-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Load Shopify Configuration and Client -->
+    <script src="config/shopify.js"></script>
+    <script src="js/shopify-client.js"></script>
+
+    <script>
+        let currentProduct = null;
+        let shopifyClient = null;
+
+        // Initialize
+        async function initializeProductPage() {
+            // Get product ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                alert('No product specified');
+                window.location.href = 'products.html';
+                return;
+            }
+
+            // Initialize Shopify client
+            if (typeof ShopifyBuy !== 'undefined') {
+                shopifyClient = new ShopifyClient();
+                await loadProduct(productId);
+            } else {
+                setTimeout(initializeProductPage, 100);
+            }
+        }
+
+        // Load product from Shopify
+        async function loadProduct(productId) {
+            try {
+                const products = await shopifyClient.fetchAllProducts();
+                currentProduct = products.find(p => p.id === productId || p.variantId === productId);
+
+                if (!currentProduct) {
+                    alert('Product not found');
+                    window.location.href = 'products.html';
+                    return;
+                }
+
+                renderProduct(currentProduct);
+                loadRecommendations(currentProduct);
+
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading product:', error);
+                alert('Error loading product');
+            }
+        }
+
+        // Render product details
+        function renderProduct(product) {
+            // Update breadcrumb
+            document.getElementById('breadcrumb-category').textContent = product.productType || 'All Products';
+            document.getElementById('breadcrumb-product').textContent = product.name;
+
+            // Update brand (if available in tags)
+            document.getElementById('product-brand').textContent = product.vendor || 'Pandora\'s Box';
+
+            // Update title
+            document.getElementById('product-title').textContent = product.name;
+
+            // Update price
+            document.getElementById('price-current').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('mobile-price').textContent = `$${product.price.toFixed(2)}`;
+
+            if (product.comparePrice && product.comparePrice > product.price) {
+                const savings = ((product.comparePrice - product.price) / product.comparePrice * 100).toFixed(0);
+                document.getElementById('price-original').textContent = `$${product.comparePrice.toFixed(2)}`;
+                document.getElementById('price-original').style.display = 'inline';
+                document.getElementById('price-savings').textContent = `Save ${savings}%`;
+                document.getElementById('price-savings').style.display = 'inline';
+            }
+
+            // Update description
+            const shortDesc = product.description ? product.description.substring(0, 200) + '...' : 'Premium quality product from Pandora\'s Box.';
+            document.getElementById('product-description').textContent = shortDesc;
+            document.getElementById('full-description').innerHTML = `<p>${product.description || 'No detailed description available.'}</p>`;
+
+            // Update stock
+            const stockBadge = document.getElementById('stock-status');
+            if (product.stock === 'in-stock') {
+                stockBadge.textContent = 'In Stock';
+                stockBadge.className = 'stock-badge in-stock';
+            } else {
+                stockBadge.textContent = 'Out of Stock';
+                stockBadge.className = 'stock-badge out-of-stock';
+                document.getElementById('add-to-cart-btn').disabled = true;
+            }
+
+            // Update images
+            const mainImage = document.getElementById('main-image');
+            mainImage.src = product.image || 'https://via.placeholder.com/600';
+            mainImage.alt = product.name;
+
+            // Social proof (random numbers for demo)
+            document.getElementById('viewers-count').textContent = Math.floor(Math.random() * 20) + 5;
+            document.getElementById('purchased-count').textContent = Math.floor(Math.random() * 50) + 10;
+        }
+
+        // Load recommendations
+        async function loadRecommendations(currentProduct) {
+            try {
+                const allProducts = await shopifyClient.fetchAllProducts();
+                const recommendations = allProducts
+                    .filter(p => p.id !== currentProduct.id && p.productType === currentProduct.productType)
+                    .slice(0, 6);
+
+                const grid = document.getElementById('recommendations-grid');
+                grid.innerHTML = recommendations.map(product => `
+                    <div class="product-card-small" onclick="window.location.href='product-detail.html?id=${product.id}'">
+                        <img src="${product.image}" alt="${product.name}">
+                        <h4>${product.name}</h4>
+                        <div class="stars">★★★★★</div>
+                        <strong>$${product.price.toFixed(2)}</strong>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading recommendations:', error);
+            }
+        }
+
+        // Quantity controls
+        function incrementQuantity() {
+            const input = document.getElementById('quantity');
+            const max = parseInt(input.max);
+            if (input.value < max) {
+                input.value = parseInt(input.value) + 1;
+            }
+        }
+
+        function decrementQuantity() {
+            const input = document.getElementById('quantity');
+            if (input.value > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Add to cart
+        async function addToCart() {
+            if (!currentProduct || !shopifyClient) return;
+
+            const quantity = parseInt(document.getElementById('quantity').value);
+
+            try {
+                await shopifyClient.addToCart(currentProduct.variantId, quantity);
+                alert(`✓ ${currentProduct.name} added to cart!`);
+
+                // Optionally redirect to cart
+                // window.location.href = 'cart.html';
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                alert('Error adding to cart. Please try again.');
+            }
+        }
+
+        // Wishlist
+        function addToWishlist() {
+            alert('Wishlist feature coming soon!');
+        }
+
+        // Share
+        function shareProduct() {
+            if (navigator.share) {
+                navigator.share({
+                    title: currentProduct.name,
+                    text: currentProduct.description,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+            }
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            event.target.classList.add('active');
+
+            // Scroll to tabs on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelector('.product-tabs').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Lightbox
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const mainImage = document.getElementById('main-image');
+
+            lightboxImage.src = mainImage.src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Initialize on page load
+        initializeProductPage();
+    </script>
+</body>
+</html>
